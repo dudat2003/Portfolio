@@ -1,5 +1,5 @@
 "use client";
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
 	Popover,
@@ -196,8 +196,8 @@ const UserItem = ({
 	updateUsername: (username: string) => void;
 }) => {
 	const inputRef = useRef<HTMLInputElement>(null);
-	const [isEditingName, setIsEditingName] = React.useState(false);
-	const [newUsername, setNewUsername] = React.useState(user.name);
+	const [isEditingName, setIsEditingName] = useState(false);
+	const [newUsername, setNewUsername] = useState(user.name);
 	const item = {
 		hidden: { opacity: 0 },
 		show: { opacity: 1 },
