@@ -1,10 +1,11 @@
 "use client";
-import React, { Suspense, useEffect, useRef, useState } from "react";
-import { Application, SPEObject, SplineEvent } from "@splinetool/runtime";
+import React, { lazy, Suspense, useEffect, useRef, useState } from "react";
+import type { Application, SPEObject, SplineEvent } from "@splinetool/runtime";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-const Spline = React.lazy(() => import("@splinetool/react-spline"));
-import { Skill, SkillNames, SKILLS } from "@/data/constants";
+const Spline = lazy(() => import("@splinetool/react-spline"));
+import type { Skill, SkillNames } from "@/data/constants";
+import { SKILLS } from "@/data/constants";
 import { sleep } from "@/lib/utils";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { usePreloader } from "./preloader";
@@ -555,23 +556,23 @@ const AnimatedBackground = () => {
 			setTimeout(removePrevTweens, 1000);
 		};
 		const removePrevTweens = () => {
-			tweens.forEach((t) => t.kill());
+			tweens.forEach((t) => {
+				t.kill();
+			});
 		};
 		return { start, stop };
 	};
 	return (
-		<>
-			<Suspense fallback={<div>Loading...</div>}>
-				<Spline
-					ref={splineContainer}
-					onLoad={(app: Application) => {
-						setSplineApp(app);
-						bypassLoading();
-					}}
-					scene="/assets/skills-keyboard.spline"
-				/>
-			</Suspense>
-		</>
+		<Suspense fallback={<div>Loading...</div>}>
+			<Spline
+				ref={splineContainer}
+				onLoad={(app: Application) => {
+					setSplineApp(app);
+					bypassLoading();
+				}}
+				scene="/assets/skills-keyboard.spline"
+			/>
+		</Suspense>
 	);
 };
 

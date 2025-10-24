@@ -50,7 +50,7 @@ const HeroSection = () => {
 										<TooltipTrigger asChild>
 											<h1
 												className={cn(
-													"font-thin text-6xl text-transparent text-slate-800 ml-1 text-left",
+													"font-thin text-balance text-6xl text-transparent text-slate-800 ml-1 text-left",
 													"cursor-default text-edge-outline font-display sm:text-7xl md:text-9xl ",
 												)}
 												style={{
@@ -61,10 +61,7 @@ const HeroSection = () => {
 													backgroundClip: "text",
 												}}
 											>
-												{config.author.split(" ")[0]}
-												<br className="md:block hidden" />
-												{config.author.split(" ")[1]}
-												{config.author.split(" ")[2]}
+												{config.author}
 											</h1>
 										</TooltipTrigger>
 										<TooltipContent

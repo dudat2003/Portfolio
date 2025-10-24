@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/popover";
 import { motion } from "framer-motion";
 
-import { SocketContext, type User, type Message } from "@/contexts/socketio";
+import { SocketContext, type User } from "@/contexts/socketio";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { Input } from "../ui/input";
 import { ScrollArea } from "../ui/scroll-area";
@@ -31,7 +31,7 @@ const OnlineUsers = () => {
 			clearTimeout(t);
 		}, 1);
 	};
-	useEffect(containerScrollBottom, [msgs]);
+	useEffect(containerScrollBottom, []);
 
 	const container = {
 		hidden: { opacity: 0 },
@@ -118,9 +118,9 @@ const OnlineUsers = () => {
 									initial="hidden"
 									animate="show"
 								>
-									{users.map((user, i) => (
+									{users.map((user) => (
 										<UserItem
-											key={i}
+											key={user.socketId}
 											user={user}
 											socket={socket}
 											updateUsername={updateUsername}
@@ -139,8 +139,8 @@ const OnlineUsers = () => {
 							ref={chatContainer}
 						>
 							{/* own, other and sys */}
-							{msgs.map((msg, i) => (
-								<div key={i}>
+							{msgs.map((msg) => (
+								<div key={msg.socketId}>
 									<span>
 										<span
 											style={{

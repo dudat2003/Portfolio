@@ -16,81 +16,81 @@ import SocketContextProvider from "@/contexts/socketio";
 import RemoteCursors from "@/components/realtime/remote-cursors";
 
 export const metadata: Metadata = {
-  title: config.title,
-  description: config.description.long,
-  keywords: config.keywords,
-  authors: [{ name: config.author }],
-  openGraph: {
-    title: config.title,
-    description: config.description.short,
-    url: config.site,
-    images: [
-      {
-        url: config.ogImg,
-        width: 800,
-        height: 600,
-        alt: "Portfolio preview",
-      },
-    ],
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: config.title,
-    description: config.description.short,
-    images: [config.ogImg],
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
+	title: config.title,
+	description: config.description.long,
+	keywords: config.keywords,
+	authors: [{ name: config.author }],
+	openGraph: {
+		title: config.title,
+		description: config.description.short,
+		url: config.site,
+		images: [
+			{
+				url: config.ogImg,
+				width: 800,
+				height: 600,
+				alt: "Portfolio preview",
+			},
+		],
+		type: "website",
+	},
+	twitter: {
+		card: "summary_large_image",
+		title: config.title,
+		description: config.description.short,
+		images: [config.ogImg],
+	},
+	robots: {
+		index: true,
+		follow: true,
+	},
 };
 
 const archivoBlack = Archivo_Black({
-  subsets: ["latin"],
-  weight: "400",
+	subsets: ["latin"],
+	weight: "400",
 });
 
 export default function RootLayout({
-  children,
+	children,
 }: {
-  children: React.ReactNode;
+	children: React.ReactNode;
 }) {
-  return (
-    <html lang="en" className={[archivoBlack.className].join(" ")}>
-      <head>
-        <Script
-          defer
-          src={process.env.UMAMI_DOMAIN}
-          data-website-id={process.env.UMAMI_SITE_ID}
-        ></Script>
-        {/* <Analytics /> */}
-      </head>
-      <body>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          disableTransitionOnChange
-        >
-          <Particles
-            className="fixed inset-0 -z-10 animate-fade-in"
-            quantity={100}
-          />
-          <Preloader>
-            <SocketContextProvider>
-              <RemoteCursors />
-              <TooltipProvider>
-                <Header />
-                {children}
-                <Footer />
-              </TooltipProvider>
-            </SocketContextProvider>
-            <Toaster />
-            <EasterEggs />
-            <ElasticCursor />
-          </Preloader>
-        </ThemeProvider>
-      </body>
-    </html>
-  );
+	return (
+		<html lang="en" className={[archivoBlack.className].join(" ")}>
+			<head>
+				<Script
+					defer
+					src={process.env.UMAMI_DOMAIN}
+					data-website-id={process.env.UMAMI_SITE_ID}
+				></Script>
+				{/* <Analytics /> */}
+			</head>
+			<body>
+				<ThemeProvider
+					attribute="class"
+					defaultTheme="dark"
+					disableTransitionOnChange
+				>
+					<Particles
+						className="fixed inset-0 -z-10 animate-fade-in"
+						quantity={100}
+					/>
+					<Preloader>
+						<SocketContextProvider>
+							<RemoteCursors />
+							<TooltipProvider>
+								<Header />
+								{children}
+								<Footer />
+							</TooltipProvider>
+						</SocketContextProvider>
+						<Toaster />
+						<EasterEggs />
+						<ElasticCursor />
+					</Preloader>
+				</ThemeProvider>
+			</body>
+		</html>
+	);
 }

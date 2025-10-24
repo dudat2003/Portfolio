@@ -20,7 +20,7 @@ const config = {
 		"Spline",
 		"Framer Motion",
 	],
-	author: "Dat Du Dinh",
+	author: "Dat Du",
 	email: "dudinhdat.03@gmail.com",
 	site: process.env.NEXT_PUBLIC_SITE_URL,
 
